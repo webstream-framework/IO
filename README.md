@@ -1,6 +1,6 @@
-# Container
+# IO
 
-This library is provides general purpose container for PHP. Any type, can be stored in association with a value to the key. The values stored in the container you can use the "lazy evaluation" not only the immediate evaluation.
+This Library is module for safety I/O processing.
 
 ## License
 Licensed under the MIT
