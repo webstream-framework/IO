@@ -7,9 +7,11 @@
   </testsuites>
   <filter>
     <whitelist>
-      <directory>Modules</directory>
+      <directory>Test</directory>
       <exclude>
-        <file>Modules/IOException.php</file>
+        <directory>Modules</directory>
+        <directory>Fixtures</directory>
+        <directory>Providers</directory>
       </exclude>
     </whitelist>
   </filter>
