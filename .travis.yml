@@ -6,6 +6,7 @@ services:
 language: php
 
 before_script:
+  - composer install
   - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit
 
 script:
