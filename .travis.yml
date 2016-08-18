@@ -1,0 +1,27 @@
+sudo: required
+
+services:
+  - docker
+
+language: php
+
+before_script:
+  - docker run -v /workspace/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit
+
+script:
+  - vendor/bin/phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml
+
+after_script:
+  - vendor/bin/test-reporter
+
+php:
+  - 7.0
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "XAtwzCAJvUNUHF9NXs6GS65/PNutYOpWiJRoyaJ0Wt64mgPcrjzvEyfzosnbqOkHUtpjsnYskGrvpa/KCkSBZ7mvJpY5Bk9vR2lrBl7L0a53i9ccrWCQsHYUmhiguFf9Y1RNNNcgEVYvZWhLXwI0w67tNx63EwP4OEpp7L6MyPbV0jy7CETpIAGHX5LyrmFbtrHNviOoqHoCqM2oz5NloJ1pn50V8M6ZqRc/oK6sJQR2gHdKt/9n+g1o/isZOe7oyzulRqcWWOUtLAdfKcHPgcz3s3n9j2NR5Ms9aWi3ybIEbHz0M7sG9mbstqfni6VVjVAz3fozfK4RQaH76el1yYM0oiIHZiRu5vlPidu9hMaR+VkWbUYh0Pvb6eZCVf7N1g4Oq28uVGbfoF/aU0cMIz2/IaDmN5spSw9toeUE6Rb5yx3r+fDKOuVjHD4r0QzrIb52wj25Wn4EEEi8v1+LMb5BKqeTCxonOVRwBMsOSeAU5ks1B7Mjn2KTiIhZytLZJOCy5j+KP72hJd70Z19saXBl8peal+1Xrm7BvDIiZSbFyD3lGDxdsQxOY750Pifz8HGYHbfvmeHLCstZEocZ/pZ3sLg/sZ6tumccXrirVVvnjJ83NiLEPApJGbU1Bisc8A450rfX1HNLG50+AX5wQoHdjIvYOSgYMG25YzMfrPw="
+
+notifications:
+  slack:
+    secure: tobcQWs5nYA4dk9FkGsYEc7NKTOfwwB43eu4mAa6Iqmr5rRF8fpj0iebwfTrkXBcOCbqfwbr4OMWQ2Dq5PuAp0NlCkHGBr6QH4COzjopO/qOSllVkxnlwi/SKYLcrLdtWdwUCJRbpp72UWCJgq/mhP1ksJf6TtlzpCc5fkO0gxJNUvMb/uUqKUWebHK4bNtNTWE5ffy7Mnxh33Ad+CTV0bqPRuRgwkh0kR4lv/83ew+EzXkxzFPppy4BJMtuBqSDx2RFsY5d8ejwVTJzVz1JLMAKzvrf5VXU+EndeaIx68zDT0bwwyq2H07ovVrL4CTkbI2a4yJDZHPhLee9JQ1fVIS7idV30ChY8drsI1xQDKYkE/vaXjlKE/cB6uOE245X+Ht6uhILTJpwjHSu0CHX3RdyWSXnSg0AsaPZN2g/58W9CzfAK9w6tgVPtxhAE81L+7De9BehEfyUfDN5EN1o4C1KWH9LLw8z6Ha19DG2d/xhJOWSMFu64TiwkuQ3lb14x/R/bcO8rJpxcpnTp10r6NIRAMJKnbMiOmmzgu7EONiUPkjIFuf57p7/rCjGLCqE8OYOhh/xt1sWzn0T17ztzKTlhoJtBq6pvkbRY8OdGsfjUvlvbEJG9zi2qqv2d8DLhGXtFWu39+A1YfEwrdi/BANuLx7vLYHYRczjveyWAlw=
