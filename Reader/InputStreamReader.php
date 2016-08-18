@@ -81,4 +81,14 @@ class InputStreamReader
     {
         $this->stream->reset();
     }
+
+    /**
+     * 入力ストリームの現在位置にmarkを設定する
+     * @param int マークするバイト位置
+     * @throws IOException
+     */
+    public function mark()
+    {
+        $this->stream->mark();
+    }
 }

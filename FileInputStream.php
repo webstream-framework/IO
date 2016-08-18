@@ -144,7 +144,7 @@ class FileInputStream extends InputStream
         }
 
         // ポインタ位置をmark位置に移動
-        fseek($this->stream, SEEK_SET, $this->markedPosition);
+        fseek($this->stream, $this->markedPosition, SEEK_SET);
         // mark位置を初期値に戻す
         $this->cursorPosition = $this->markedPosition;
         $this->markedPosition = 0;
