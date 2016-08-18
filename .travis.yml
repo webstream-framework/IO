@@ -6,6 +6,8 @@ services:
 language: php
 
 before_script:
+  - ls -la
+  - pwd
   - docker run -v /workspace/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit
 
 script:
