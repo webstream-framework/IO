@@ -11,8 +11,4 @@ RUN curl -s http://getcomposer.org/installer | php && mv -f composer.phar /usr/b
   && chmod +x /usr/bin/composer \
   && composer self-update
 
-RUN git clone https://github.com/webstream-framework/IO.git workspace \
-  && cd workspace \
-  && composer install
-
 WORKDIR /workspace
