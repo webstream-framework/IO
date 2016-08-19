@@ -41,6 +41,7 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
 
         $writer = new FileWriter($filePath);
         $writer->write($content);
+        $writer->close();
 
         $reader = new FileReader($filePath);
         $this->assertEquals($reader->read(), $content);
@@ -56,6 +57,7 @@ class FileWriterTest extends \PHPUnit_Framework_TestCase
     {
         $file = new File($filePath);
         $file->delete();
+
         $writer = new FileWriter($file);
         $writer->write($content);
         $writer->close();

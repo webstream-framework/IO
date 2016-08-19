@@ -30,17 +30,17 @@ class FileOutputStream extends OutputStream
         $filepath = null;
         if ($file instanceof File) {
             $this->file = $file;
-            $filepath = $this->file->getFilePath();
+            $filepath = $this->file->getAbsoluteFilePath();
         } elseif (is_string($file)) {
             if (!file_exists($file)) {
-                $dirname = dirname($filepath);
+                $dirname = dirname($file);
                 $dir = new File($dirname);
                 if (!$dir->isWritable()) {
-                    throw new IOException("Cannot writable: " . $filepath);
+                    throw new IOException("Cannot writable: " . $dirname);
                 }
             }
             $this->file = new File($file);
-            $filepath = $this->file->getFilePath();
+            $filepath = $this->file->getAbsoluteFilePath();
         } else {
             throw new InvalidArgumentException("Invalid argument type: " . $file);
         }
@@ -49,11 +49,11 @@ class FileOutputStream extends OutputStream
         $stream = fopen($filepath, $mode);
 
         if (!is_resource($stream) || $stream === false) {
-            throw new IOException("Unable open " . $this->file->getFilePath());
+            throw new IOException("Unable open " . $this->file->getAbsoluteFilePath());
         }
 
         if (!flock($stream, LOCK_EX | LOCK_NB)) {
-            throw new IOException("Cannot lock file: " . $this->file->getFilePath());
+            throw new IOException("Cannot lock file: " . $this->file->getAbsoluteFilePath());
         }
 
         parent::__construct($stream);

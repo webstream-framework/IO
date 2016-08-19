@@ -37,8 +37,7 @@ class File
         // realpathを含めてキャッシュクリア
         clearstatcache(true);
 
-        $realPath = realpath($filePath);
-        $this->filePath = $realPath !== false ? $realPath : $filePath;
+        $this->filePath = $filePath;
         $this->fileName = basename($this->filePath);
         $this->fileExt = pathinfo($this->filePath, PATHINFO_EXTENSION);
     }
@@ -235,15 +234,6 @@ class File
         $absDestPath = $dirPath . "/" . basename($destPath);
 
         return rename($this->filePath, $absDestPath);
-    }
-
-    /**
-     * ファイルサイズを返却する
-     * @return int ファイルサイズ
-     */
-    public function size()
-    {
-        return $this->exists() ? filesize($this->filePath) : 0;
     }
 
     /**
