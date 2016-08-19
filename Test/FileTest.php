@@ -57,6 +57,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * 正常系
      * 絶対ファイルパスを取得できること
+     * @test
      * @dataProvider fileLinkProvider
      */
     public function okFileAbsolutePath($file, $linkPath)
