@@ -34,6 +34,14 @@ trait InputStreamReaderProvider
         ];
     }
 
+    public function closeProvider()
+    {
+        return [
+            [new FileInputStream(dirname(__FILE__)  . "/../Fixtures/inputstreamreader-test1.txt")],
+            [new StringInputStream("a\n")]
+        ];
+    }
+
     public function skipProvider()
     {
         return [
@@ -55,10 +63,18 @@ trait InputStreamReaderProvider
     public function overSkipAndReadProvider()
     {
         return [
-            [new FileInputStream(dirname(__FILE__)  . "/../Fixtures/inputstreamreader-test5.txt"), 4, null],
-            [new FileInputStream(dirname(__FILE__)  . "/../Fixtures/inputstreamreader-test6.txt"), 100, null],
-            [new StringInputStream("abc\n"), 4, null],
-            [new StringInputStream("abcde\nあいうえお"), 100, null]
+            [new FileInputStream(dirname(__FILE__)  . "/../Fixtures/inputstreamreader-test5.txt"), 4],
+            [new FileInputStream(dirname(__FILE__)  . "/../Fixtures/inputstreamreader-test6.txt"), 100],
+            [new StringInputStream("abc\n"), 4],
+            [new StringInputStream("abcde\nあいうえお"), 100]
+        ];
+    }
+
+    public function frontSkipProvider()
+    {
+        return [
+            [new FileInputStream(dirname(__FILE__)  . "/../Fixtures/inputstreamreader-test8.txt"), 3, -1, "c"],
+            [new StringInputStream("abcde\n"), 3, -1, "c"]
         ];
     }
 

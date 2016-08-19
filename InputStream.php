@@ -89,6 +89,10 @@ abstract class InputStream
             throw new IOException(get_class($this) . " does not support mark.");
         }
 
+        if ($this->stream === null) {
+            return null;
+        }
+
         $this->markedPosition = $this->cursorPosition;
     }
 
@@ -100,6 +104,10 @@ abstract class InputStream
     {
         if (!$this->isMarkSupported()) {
             throw new IOException(get_class($this) . " does not support mark and reset.");
+        }
+
+        if ($this->stream === null) {
+            return null;
         }
 
         // mark位置を初期値に戻す

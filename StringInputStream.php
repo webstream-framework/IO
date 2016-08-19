@@ -45,6 +45,10 @@ class StringInputStream extends InputStream
      */
     public function read($length = null)
     {
+        if ($this->stream === null) {
+            return null;
+        }
+
         if ($this->eof()) {
             return null;
         }
@@ -89,6 +93,10 @@ class StringInputStream extends InputStream
      */
     public function readLine()
     {
+        if ($this->stream === null) {
+            return null;
+        }
+
         if ($this->eof()) {
             return null;
         }
@@ -119,6 +127,10 @@ class StringInputStream extends InputStream
      */
     public function skip(int $pos)
     {
+        if ($this->stream === null) {
+            return -1;
+        }
+
         // ファイル終端到達後、skipを実行すると後方にポインタが移動する
         // このときEOFだったものがEOFでなくなる
         $start = $this->cursorPosition;

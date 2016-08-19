@@ -63,6 +63,10 @@ class FileInputStream extends InputStream
      */
     public function read($length = null)
     {
+        if ($this->stream === null) {
+            return null;
+        }
+
         if ($this->eof()) {
             return null;
         }
@@ -94,6 +98,10 @@ class FileInputStream extends InputStream
      */
     public function readLine()
     {
+        if ($this->stream === null) {
+            return null;
+        }
+
         if ($this->eof()) {
             return null;
         }
@@ -113,6 +121,10 @@ class FileInputStream extends InputStream
      */
     public function skip(int $pos)
     {
+        if ($this->stream === null) {
+            return -1;
+        }
+
         // 現在のポインタ位置から$posだけ後方へ移動
         // シークに対応していないファイルシステムの場合、-1を返す
         if (fseek($this->stream, $pos, SEEK_CUR) === -1) {
@@ -141,6 +153,10 @@ class FileInputStream extends InputStream
     {
         if (!$this->isMarkSupported()) {
             throw new IOException(get_class($this) . " does not support mark and reset.");
+        }
+
+        if ($this->stream === null) {
+            return;
         }
 
         // ポインタ位置をmark位置に移動

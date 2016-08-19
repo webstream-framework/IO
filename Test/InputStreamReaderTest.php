@@ -51,6 +51,19 @@ class InputStreamReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * 正常系
+     * 入力ストリームをクローズできること
+     * @test
+     * @dataProvider closeProvider
+     */
+    public function okClose($stream)
+    {
+        $reader = new InputStreamReader($stream);
+        $reader->close();
+        $this->assertNull($reader->read());
+    }
+
+    /**
+     * 正常系
      * 指定バイト数だけスキップできること
      * EOFを超えるサイズの読み込み時は、ファイルの場合改行が含まれる
      * @test
@@ -65,15 +78,31 @@ class InputStreamReaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * 正常系
-     * 終端を越えたスキップをしたとき、readはnullを返すこと
+     * 終端を越えたスキップをしたとき
+     * 1回目のreadは空文字を返し、2回目のreadはnullを返すこと
      * @test
      * @dataProvider overSkipAndReadProvider
      */
-    public function okOverSkipAndRead($stream, $skipNum, $eof)
+    public function okOverSkipAndRead($stream, $skipNum)
     {
         $reader = new InputStreamReader($stream);
         $this->assertEquals($reader->skip($skipNum), $skipNum);
-        $this->assertEquals($reader->read(1), $eof);
+        $this->assertEmpty($reader->read());
+        $this->assertNull($reader->read());
+    }
+
+    /**
+     * 正常系
+     * ポインタを後方に移動できること
+     * @test
+     * @dataProvider frontSkipProvider
+     */
+    public function okFrontSkip($stream, $skipNum1, $skipNum2, $result)
+    {
+        $reader = new InputStreamReader($stream);
+        $reader->skip($skipNum1);
+        $reader->skip($skipNum2);
+        $this->assertEquals($reader->read(), $result);
     }
 
     /**
