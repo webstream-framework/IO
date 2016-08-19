@@ -6,12 +6,12 @@
     </testsuite>
   </testsuites>
   <filter>
-    <whitelist>
-      <directory>Test</directory>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory>./</directory>
       <exclude>
-        <directory>Modules</directory>
-        <directory>Fixtures</directory>
-        <directory>Providers</directory>
+        <directory>Test/Modules</directory>
+        <directory>Test/Fixtures</directory>
+        <directory>Test/Providers</directory>
       </exclude>
     </whitelist>
   </filter>
