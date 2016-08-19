@@ -9,9 +9,8 @@
     <whitelist addUncoveredFilesFromWhitelist="true">
       <directory>./</directory>
       <exclude>
-        <directory>Test/Modules</directory>
-        <directory>Test/Fixtures</directory>
-        <directory>Test/Providers</directory>
+        <directory>vendor</directory>
+        <directory>Test</directory>
       </exclude>
     </whitelist>
   </filter>
