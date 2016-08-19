@@ -38,4 +38,18 @@ trait FileProvider
             [new File("/tmp/file-test-tmp.txt")]
         ];
     }
+
+    public function tmpDirectoryProvider()
+    {
+        return [
+            [new File("/tmp/file-test-tmp/")]
+        ];
+    }
+
+    public function renameFailureProvider()
+    {
+        return [
+            [new File(dirname(__FILE__)  . "/../Fixtures/file-test/file-test2.txt")]
+        ];
+    }
 }

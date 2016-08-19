@@ -168,6 +168,18 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * 正常系
+     * ディレクトリを削除できること
+     * @test
+     * @dataProvider tmpDirectoryProvider
+     */
+    public function okDirectoryDelete($file)
+    {
+        mkdir($file->getFilePath(), 0777);
+        $this->assertTrue($file->delete());
+    }
+
+    /**
+     * 正常系
      * ファイルサイズを取得できること
      * @test
      * @dataProvider tmpFileProvider
@@ -191,5 +203,18 @@ class FileTest extends \PHPUnit_Framework_TestCase
     public function okLastModified($file)
     {
         $this->assertEquals(gettype($file->lastModified()), "integer");
+    }
+
+    /**
+     * 異常系
+     * ファイルのリネームに失敗すること
+     * @test
+     * @dataProvider renameFailureProvider
+     * @expectedException WebStream\Exception\Extend\IOException
+     */
+    public function ngFileRename($file)
+    {
+        chmod($file->getFilePath(), 0444);
+        $file->renameTo("/tmp/file-test-rename/" . $file->getFileName());
     }
 }
