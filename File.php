@@ -5,7 +5,7 @@ use WebStream\Exception\Extend\IOException;
 
 /**
  * File
- * 状態を表さないもの(ファイルパス等)はキャッシュし、
+ * 状態を表さないもの(ファイルパス等)はキャッシュし
  * 状態を表すもの(存在チェク、ファイル種別、権限等)はキャッシュクリアし都度取得する
  * @author Ryuichi TANAKA.
  * @since 2016/02/05
