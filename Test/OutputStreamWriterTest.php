@@ -31,10 +31,6 @@ class OutputStreamWriterTest extends \PHPUnit_Framework_TestCase
 {
     use OutputStreamWriterProvider;
 
-    public function setUp()
-    {
-    }
-
     /**
      * 正常系
      * ファイルに書き込みができること
