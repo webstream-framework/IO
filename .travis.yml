@@ -11,7 +11,6 @@ before_script:
 
 script:
   - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml
-  - vendor/bin/phpunit --configuration phpunit.xml --coverage-clover build/logs/clover.xml
 
 after_script:
   - vendor/bin/test-reporter
