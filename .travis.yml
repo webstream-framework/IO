@@ -13,7 +13,7 @@ script:
   - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit --configuration phpunit.xml
 
 after_script:
-  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN
+  - export CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN
   - vendor/bin/test-reporter
 
 php:
