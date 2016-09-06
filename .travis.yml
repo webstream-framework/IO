@@ -13,15 +13,15 @@ script:
   - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit --configuration phpunit.xml
 
 after_script:
-  - export CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN
   - vendor/bin/test-reporter
 
 php:
   - 7.0
 
-env:
-  global:
-    secure: "Td3MtYkj3nqYz3wzgRspaxtNATF6VBlycrYhOSEjqUxuftUzk9YyEUpHFnU+nx98OkmtKC0UMjAxKJnPw+qkdme3RvHY+U4VJFbUspcLky7dKTsUlDC+ufBZwxoCgMpY2YibSG88lHPAa5DHpbpecZEbujXk0jZQEmmbEodEmhpgki7q4zDb9c/lE7+6cDH61de583Fq/kLfXUwG74I/GfPYJxx6KjW7jr30uPhSVog5Tf0PjIUc6bu6hWosdTO7rZZ0/MwEDeSqxM7kHM3b4cL2bFcxPgBGKmiA6/FcT4nm4WyQ9m6fmtlDQHhIe7l3Um5L28sUjBhxJGP6svC5j5L6pud3AQDshrizjx/3gQdNX7m58Pb4Yk/NCiVGzPBKkz+XA67mSYZnsW+7W8pQiV7Aptuoa5QlhPdZYQVGc2vvaAhwZ/YpUW7mgHqeADvnvDyNZpgW2VGsa1GyyicRDD2X9I9dBz++wPHqf0/4gh6Ij8lQeYK2+cfeXbXU4Vfy5LvMt+637zrLa+w50/1+rr+LS1XjUgOO0JdmvNshMimmAAv34vAk4QQdQbTmC3rk/aIw9aKKGx8qJTJfs1F7VMc1iVl/QqG25WmW0o9fnVIaO/giRtJAgBUrjX2AXMz14j/f8NbMc2aaAcr0nsaFYLb6k36EGXz9xJFUO8V1vFo="
+addons:
+  code_climate:
+    repo_token:
+      secure: "kKI/II9aqMtZIrPbTaWMR6OavOsFD2n2GS3DdKLVviyTbPhHW1KDYCFdTXCyVvM1pEvkfc5fQt2fCHOYOCdiIdN957Ewe6zmFrUoZDgUiFAkZaoH3tR+RgRh2F2WWjcBk8DgnD3x3ofXmbYb/N3tdwFtpRsolkZuRuvOLGK2Qnzfu4qe9GRxXmkFm42wjV0FNI1drzmdTQAa2obWSqsSptDNJ5ktwdiTRiIGXnsjCOUIBrJzL+21loeh5t0yeS/3nw7w28seD5BKbHUEZe62+3E3f24fy8e7mFYysKUNNc9Zumznm8CKnK0Byyn1cq0iXrta3rL++xjTmw8Cace4V9lEuN1ods7LcsL7aNqKOgnszjSHebAvfrIRYfo1H3ra4wkDod5Qax+YXU0vyZWqIUTA5TsXZ38CNviUDK9woDU001K57EYiXkp0S+sAR5/8Ej5MzQi+eaKlE9F3r20tw+wwWtcmYC3TBrNGnrnB2WM/zq3966CYhHtb5KbWm+gBKKY/bJUQ4LcJnF8F9Q8cHhBdE9uTQgaz0aOP4nRR5nWprcJpWepiTWhKxrYaWSfFzP8Z9UuogPAciAO50bd3l8rYNitfr3eflK7cJj0w3L0RSxXfSsfQpiHGoxhFk/pbacAo/iaEspNJ7aPGsg/si3n3a5SXvd2IVcmsiwrAJ5w="
 
 notifications:
   slack:
