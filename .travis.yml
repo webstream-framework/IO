@@ -13,14 +13,11 @@ script:
   - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit --configuration phpunit.xml
 
 after_script:
-  - vendor/bin/test-reporter
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover clover.xml
 
 php:
   - 7.0
-
-addons:
-  code_climate:
-    repo_token: fee83eabba40035ba5071a29aba8a4a4cd4a39a8a6bfbf5cd90bb9cb0f396928
 
 notifications:
   slack:
