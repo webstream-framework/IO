@@ -1,0 +1,15 @@
+checks:
+    php: true
+filter:
+    excluded_paths:
+        - 'Tests/*'
+tools:
+    external_code_coverage:
+        timeout: 2400
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: true
+            within:
+                brackets: true
