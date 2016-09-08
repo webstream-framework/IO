@@ -263,14 +263,6 @@ class OutputStreamWriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @test
-     */
-    public function dummy()
-    {
-        $this->assertTrue(true);
-    }
-
-    /**
      * 異常系
      * flush済みの状態でflushすると例外が発生すること
      * @test
