@@ -5,33 +5,25 @@ filter:
         - 'Test/*'
 tools:
     external_code_coverage:
-        enabled: true
         timeout: 2400
     php_code_coverage:
         enabled: false
     php_code_sniffer:
-        enabled: true
         config:
-            standard: PSR2
-            sniffs:
-                generic:
-                    files:
-                        one_class_per_file_sniff: false
-            filter:
-                excluded_paths:
+            standard: 'PSR2'
+        filter:
+            excluded_paths:
+                - 'Test/*'
     php_cpd:
-        enabled: true
         excluded_dirs:
             - Test
     php_cs_fixer:
-        enabled: true
         config:
             level: psr2
         filter:
             excluded_paths:
                 - 'Test/*'
     php_mess_detector:
-        enabled: true
         config:
             rulesets:
                 - codesize
