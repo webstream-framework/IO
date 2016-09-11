@@ -10,7 +10,7 @@ before_script:
   - mkdir -p build/logs
 
 script:
-  - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/module-io vendor/bin/phpunit --configuration phpunit.xml
+  - docker run -v /home/travis/build/webstream-framework/IO:/workspace/ webstream/php-alpine vendor/bin/phpunit --configuration phpunit.xml
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
