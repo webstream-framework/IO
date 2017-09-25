@@ -17,7 +17,7 @@ use WebStream\IO\Test\Providers\FileProvider;
  * @since 2016/08/19
  * @version 0.7
  */
-class FileTest extends \PHPUnit_Framework_TestCase
+class FileTest extends \PHPUnit\Framework\TestCase
 {
     use FileProvider;
 
