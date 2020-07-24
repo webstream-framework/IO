@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO\Test;
 
 require_once dirname(__FILE__) . '/../File.php';
@@ -211,24 +212,27 @@ class FileTest extends \PHPUnit\Framework\TestCase
      * ファイルのリネームに失敗すること
      * @test
      * @dataProvider renameFailureProvider
-     * @expectedException WebStream\Exception\Extend\IOException
      */
     public function ngFileRename($file)
     {
+        $this->expectException(\WebStream\Exception\Extend\IOException::class);
+
         chmod($file->getFilePath(), 0444);
         $file->renameTo("/tmp/file-test-rename/" . $file->getFileName());
+        $this->fail();
     }
 
     /**
      * 異常系
      * 絶対ファイルパスを取得できず例外が発生すること
      * @test
-     * @expectedException WebStream\Exception\Extend\IOException
      */
     public function ngFileAbsolutePath()
     {
+        $this->expectException(\WebStream\Exception\Extend\IOException::class);
+
         $file = new File("/tmp/dummy.txt");
         $file->getAbsoluteFilePath();
-        $this->assertTrue(false);
+        $this->fail();
     }
 }

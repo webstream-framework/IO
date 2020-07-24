@@ -1,6 +1,8 @@
 <?php
+
 namespace WebStream\IO\Test;
 
+require_once dirname(__FILE__) . '/../File.php';
 require_once dirname(__FILE__) . '/../InputStream.php';
 require_once dirname(__FILE__) . '/../FileInputStream.php';
 require_once dirname(__FILE__) . '/../StringInputStream.php';
@@ -151,12 +153,13 @@ class InputStreamReaderTest extends \PHPUnit\Framework\TestCase
      * 読み込みサイズに不正値を渡した時、例外が発生すること
      * @test
      * @dataProvider invalidLengthProvider
-     * @expectedException WebStream\Exception\Extend\InvalidArgumentException
      */
     public function ngInvalidLength($stream)
     {
+        $this->expectException(\WebStream\Exception\Extend\InvalidArgumentException::class);
+
         $reader = new InputStreamReader($stream);
         $reader->read("dummy");
-        $this->assertTrue(false);
+        $this->fail();
     }
 }

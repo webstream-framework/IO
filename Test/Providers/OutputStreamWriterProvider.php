@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO\Test\Providers;
 
 use WebStream\IO\FileOutputStream;

@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO\Test;
 
 require_once dirname(__FILE__) . '/../File.php';
@@ -229,12 +230,13 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * 異常系
      * ファイルオブジェクト、ファイルパス以外を指定した場合、例外が発生すること
      * @test
-     * @expectedException WebStream\Exception\Extend\InvalidArgumentException
      */
     public function ngInvalidFileType()
     {
+        $this->expectException(\WebStream\Exception\Extend\InvalidArgumentException::class);
+
         $stream = new FileOutputStream(1);
-        $this->assertTrue(false);
+        $this->fail();
     }
 
     /**
@@ -242,10 +244,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * ファイルがロックされている状態でストリームオブジェクトを作成した場合、例外が発生すること
      * @test
      * @dataProvider writeProvider
-     * @expectedException WebStream\Exception\Extend\IOException
      */
     public function ngAlreadyFileLocked($filePath)
     {
+        $this->expectException(\WebStream\Exception\Extend\IOException::class);
+
         @unlink($filePath);
         // ファイルを作る
         $stream = new FileOutputStream($filePath);
@@ -259,7 +262,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         flock($resource, LOCK_EX);
 
         new FileOutputStream($filePath);
-        $this->assertTrue(false);
+        $this->fail();
     }
 
     /**
@@ -267,10 +270,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * flush済みの状態でflushすると例外が発生すること
      * @test
      * @dataProvider writeProvider
-     * @expectedException WebStream\Exception\Extend\IOException
      */
     public function ngInvalidFlush($filePath)
     {
+        $this->expectException(\WebStream\Exception\Extend\IOException::class);
+
         @unlink($filePath);
         $stream = new FileOutputStream($filePath);
         $writer = new OutputStreamWriter($stream);
@@ -279,6 +283,6 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $writer->flush();
-        $this->assertTrue(false);
+        $this->fail();
     }
 }

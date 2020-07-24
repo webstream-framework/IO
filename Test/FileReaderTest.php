@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO\Test;
 
 require_once dirname(__FILE__) . '/../InputStream.php';
