@@ -7,8 +7,7 @@ build:
                 php: 7.3.0
             tests:
                 override:
-                    - command: phpcs-run
-                      use_website_config: true
+                    - phpcs-run
                     - php-scrutinizer-run
 
 filter:
