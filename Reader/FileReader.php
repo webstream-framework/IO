@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO\Reader;
 
 use WebStream\IO\FileInputStream;

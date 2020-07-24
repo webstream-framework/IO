@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO;
 
 use WebStream\IO\OutputStream;

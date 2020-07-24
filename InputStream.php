@@ -1,4 +1,5 @@
 <?php
+
 namespace WebStream\IO;
 
 use WebStream\Exception\Extend\IOException;
@@ -61,6 +62,13 @@ abstract class InputStream
      * @throws IOException
      */
     abstract public function read($length = null);
+
+    /**
+     * 入力ストリームから行単位でデータを読み込む
+     * 末尾に改行コードは含まない
+     * @return string 読み込みデータ
+     */
+    abstract public function readLine();
 
     /**
      * 入力ストリームから指定バイト数後方へポインタを移動する

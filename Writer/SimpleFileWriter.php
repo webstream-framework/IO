@@ -1,8 +1,8 @@
 <?php
+
 namespace WebStream\IO\Writer;
 
 use WebStream\IO\File;
-use WebStream\IO\FileOutputStream;
 use WebStream\Exception\Extend\IOException;
 
 /**
