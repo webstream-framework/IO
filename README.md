@@ -1,5 +1,5 @@
 # IO
-[![Build Status](https://travis-ci.org/webstream-framework/IO.svg?branch=master)](https://travis-ci.org/webstream-framework/IO)
+![build](https://github.com/webstream-framework/IO/workflows/WebStream%20IO%20build%20and%20test/badge.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/webstream-framework/IO/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/webstream-framework/IO/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/webstream-framework/IO/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/webstream-framework/IO/?branch=master)
 

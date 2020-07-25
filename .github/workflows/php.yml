@@ -1,4 +1,4 @@
-name: WebStream IO build and test
+name: build
 
 on:
   push:
