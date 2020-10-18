@@ -4,7 +4,7 @@ LABEL maintainer Ryuichi Tanaka <mapserver2007@gmail.com>
 RUN apt-get update && apt-get install -y \
   git
 
-RUN pecl install xdebug-2.9.6 && \
+RUN pecl install xdebug-2.9.8 && \
   docker-php-ext-enable xdebug
 
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /tmp/pear && rm -rf /tmp/* && \
