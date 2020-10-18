@@ -3,7 +3,6 @@
 namespace WebStream\IO;
 
 use WebStream\Exception\Extend\InvalidArgumentException;
-use WebStream\Exception\Extend\IOException;
 
 /**
  * StringInputStream
@@ -21,13 +20,13 @@ class StringInputStream extends InputStream
     /**
      * @var bool 終端かどうか
      */
-    private $isEOF = false;
+    private bool $isEOF = false;
 
     /**
      * construct
      * @param string $str 文字列
      */
-    public function __construct($str)
+    public function __construct(string $str)
     {
         parent::__construct($str);
         $this->length = strlen($str);
@@ -44,7 +43,7 @@ class StringInputStream extends InputStream
     /**
      * {@inheritdoc}
      */
-    public function read($length = null)
+    public function read(int $length = 0)
     {
         if ($this->stream === null) {
             return null;
@@ -66,15 +65,11 @@ class StringInputStream extends InputStream
         }
 
         $out = "";
-        if ($length === null) {
+        if ($length === 0) {
             $length = 1;
-            $out = substr($this->stream, $this->cursorPosition, 1);
+            $out = substr($this->stream, $this->cursorPosition, $length);
             $this->cursorPosition += 1;
         } else {
-            if (!is_int($length)) {
-                throw new InvalidArgumentException("Stream read must be a numeric value.");
-            }
-
             // $lengthがファイル終端を越えないようにする
             if (($this->cursorPosition + $length) > $this->length) {
                 $length = $this->length - $this->cursorPosition;

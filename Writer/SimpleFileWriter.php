@@ -2,8 +2,8 @@
 
 namespace WebStream\IO\Writer;
 
-use WebStream\IO\File;
 use WebStream\Exception\Extend\IOException;
+use WebStream\IO\File;
 
 /**
  * SimpleFileWriter
@@ -17,24 +17,25 @@ class SimpleFileWriter extends OutputStreamWriter
     /**
      * @var string ファイルパス
      */
-    private $filepath;
+    private string $filepath;
 
     /**
      * @var int バッファリングサイズ
      */
-    private $bufferSize;
+    private int $bufferSize;
 
     /**
      * @var string 書き込みモード
      */
-    private $mode;
+    private string $mode;
 
     /**
      * constructor
      * @param string $filepath ファイルパス
      * @param int $bufferSize バッファリングサイズ
+     * @throws IOException
      */
-    public function __construct($filepath, $bufferSize = null)
+    public function __construct(string $filepath, int $bufferSize = 0)
     {
         $dirname = dirname($filepath);
         $dir = new File($dirname);
@@ -51,12 +52,13 @@ class SimpleFileWriter extends OutputStreamWriter
      * ファイルに書き込む
      * ファイルが存在する場合、常に追記モード
      * @param mixed $data 書き込みデータ
+     * @throws IOException
      */
     public function write($data)
     {
         $stream = fopen($this->filepath, $this->mode);
 
-        if ($this->bufferSize !== null && stream_set_write_buffer($stream, $this->bufferSize) !== 0) {
+        if ($this->bufferSize > 0 && stream_set_write_buffer($stream, $this->bufferSize) !== 0) {
             throw new IOException("Failed to change the buffer size.");
         }
 
@@ -97,6 +99,7 @@ class SimpleFileWriter extends OutputStreamWriter
 
     /**
      * {@inheritdoc}
+     * @throws IOException
      */
     public function newLine()
     {

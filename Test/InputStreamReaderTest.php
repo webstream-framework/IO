@@ -153,6 +153,7 @@ class InputStreamReaderTest extends \PHPUnit\Framework\TestCase
      * 読み込みサイズに不正値を渡した時、例外が発生すること
      * @test
      * @dataProvider invalidLengthProvider
+     * @param $stream
      */
     public function ngInvalidLength($stream)
     {

@@ -10,6 +10,7 @@ require_once dirname(__FILE__) . '/../Reader/FileReader.php';
 require_once dirname(__FILE__) . '/../Test/Providers/FileReaderProvider.php';
 require_once dirname(__FILE__) . '/../Test/Modules/IOException.php';
 
+use PHPUnit\Framework\TestCase;
 use WebStream\IO\File;
 use WebStream\IO\Reader\FileReader;
 use WebStream\IO\Test\Providers\FileReaderProvider;
@@ -20,7 +21,7 @@ use WebStream\IO\Test\Providers\FileReaderProvider;
  * @since 2016/08/18
  * @version 0.7
  */
-class FileReaderTest extends \PHPUnit\Framework\TestCase
+class FileReaderTest extends TestCase
 {
     use FileReaderProvider;
 
@@ -29,6 +30,10 @@ class FileReaderTest extends \PHPUnit\Framework\TestCase
      * ファイルパスからファイルが読み込めること
      * @test
      * @dataProvider readProvider
+     * @param $filePath
+     * @param $result
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
     public function okReadFromFilePath($filePath, $result)
     {
@@ -41,6 +46,10 @@ class FileReaderTest extends \PHPUnit\Framework\TestCase
      * ファイルオブジェクトからファイルが読み込めること
      * @test
      * @dataProvider readProvider
+     * @param $filePath
+     * @param $result
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
     public function okReadFromFileObject($filePath, $result)
     {

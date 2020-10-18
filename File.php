@@ -31,7 +31,7 @@ class File
 
     /**
      * constructor
-     * @param string $filepath ファイルパス
+     * @param string $filePath
      */
     public function __construct(string $filePath)
     {
@@ -180,6 +180,7 @@ class File
      * ファイルサイズを返却する
      * ファイルが存在しなければ0
      * @return int ファイルサイズ
+     * @throws IOException
      */
     public function length()
     {
@@ -234,8 +235,9 @@ class File
      * ファイルをリネームする
      * @param string $destPath 変更後ファイル名
      * @return bool リネーム結果
+     * @throws IOException
      */
-    public function renameTo($destPath)
+    public function renameTo(string $destPath)
     {
         $dirname = dirname($destPath);
         $dir = new File($dirname);

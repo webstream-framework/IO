@@ -2,6 +2,8 @@
 
 namespace WebStream\IO\Reader;
 
+use WebStream\Exception\Extend\InvalidArgumentException;
+use WebStream\Exception\Extend\IOException;
 use WebStream\IO\InputStream;
 
 /**
@@ -15,7 +17,7 @@ class InputStreamReader
     /**
      * @var InputStream 入力ストリーム
      */
-    protected $stream;
+    protected InputStream $stream;
 
     /**
      * constructor
@@ -45,11 +47,17 @@ class InputStreamReader
     /**
      * 入力ストリームからデータを読み込む
      * @return string 読み込みデータ
+     * @throws InvalidArgumentException
+     * @throws IOException
      */
     public function read()
     {
         $args = func_get_args();
-        $length = count($args) === 1 ? $args[0] : null;
+        $length = count($args) === 1 ? $args[0] : 0;
+
+        if (!is_int($length)) {
+            throw new InvalidArgumentException("Invalid read size.");
+        }
 
         return $this->stream->read($length);
     }

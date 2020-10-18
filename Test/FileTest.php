@@ -160,6 +160,8 @@ class FileTest extends \PHPUnit\Framework\TestCase
      * ファイルを削除できること
      * @test
      * @dataProvider tmpFileProvider
+     * @param $file
+     * @throws \WebStream\Exception\Extend\IOException
      */
     public function okFileDelete($file)
     {

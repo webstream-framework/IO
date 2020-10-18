@@ -3,7 +3,6 @@
 namespace WebStream\IO\Writer;
 
 use WebStream\IO\OutputStream;
-use WebStream\Exception\Extend\InvalidArgumentException;
 
 /**
  * OutputStreamWriter
@@ -16,7 +15,7 @@ class OutputStreamWriter
     /**
      * @var OutputStream 出力ストリーム
      */
-    protected $stream;
+    protected OutputStream $stream;
 
     /**
      * constructor

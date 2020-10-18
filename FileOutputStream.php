@@ -2,7 +2,6 @@
 
 namespace WebStream\IO;
 
-use WebStream\IO\OutputStream;
 use WebStream\Exception\Extend\InvalidArgumentException;
 use WebStream\Exception\Extend\IOException;
 
@@ -17,7 +16,7 @@ class FileOutputStream extends OutputStream
     /**
      * @var File ファイルオブジェクト
      */
-    protected $file;
+    protected File $file;
 
     /**
      * constructor
@@ -83,6 +82,7 @@ class FileOutputStream extends OutputStream
 
     /**
      * {@inheritdoc}
+     * @throws IOException
      */
     public function close()
     {
@@ -104,6 +104,7 @@ class FileOutputStream extends OutputStream
 
     /**
      * {@inheritdoc}
+     * @throws IOException
      */
     public function flush()
     {
