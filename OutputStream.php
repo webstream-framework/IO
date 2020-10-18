@@ -35,8 +35,8 @@ abstract class OutputStream
     /**
      * 出力ストリームに書き出す
      * @param mixed $buf 出力データ
-     * @param int $off データ開始位置
-     * @param int $len 書き出すバイト数
+     * @param int|null $off データ開始位置
+     * @param int|null $len 書き出すバイト数
      * @throws WebStream\Exception\Extend\IOException
      */
     abstract public function write($buf, int $off = null, int $len = null);

@@ -34,6 +34,10 @@ class FileWriterTest extends \PHPUnit\Framework\TestCase
      * ファイルパスからファイルに書き込みできること
      * @test
      * @dataProvider writeProvider
+     * @param $filePath
+     * @param $content
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
     public function okWriteFromFilePath($filePath, $content)
     {

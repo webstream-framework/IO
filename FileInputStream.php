@@ -16,7 +16,7 @@ class FileInputStream extends InputStream
     /**
      * @var File ファイルオブジェクト
      */
-    protected $file;
+    protected File $file;
 
     /**
      * constructor
@@ -62,7 +62,7 @@ class FileInputStream extends InputStream
     /**
      * {@inheritdoc}
      */
-    public function read($length = null)
+    public function read(int $length = 0)
     {
         if ($this->stream === null) {
             return null;
@@ -73,14 +73,11 @@ class FileInputStream extends InputStream
         }
 
         $out = null;
-        if ($length === null) {
+        if ($length === 0) {
             if (($out = @fread($this->stream, 1)) === false) {
                 throw new IOException("Failed to read stream.");
             }
         } else {
-            if (!is_int($length)) {
-                throw new InvalidArgumentException("Stream read must be a numeric value.");
-            }
             // ポインタ位置が負になった場合、警告が出てfalseを返す
             // ポインタの終端を越えた場合、読み込みを終了する
             // すでに終端位置の場合、空文字を返す

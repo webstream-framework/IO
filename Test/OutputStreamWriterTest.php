@@ -15,12 +15,13 @@ require_once dirname(__FILE__) . '/../Test/Providers/OutputStreamWriterProvider.
 require_once dirname(__FILE__) . '/../Test/Modules/IOException.php';
 require_once dirname(__FILE__) . '/../Test/Modules/InvalidArgumentException.php';
 
+use PHPUnit\Framework\TestCase;
+use WebStream\IO\ConsoleOutputStream;
 use WebStream\IO\File;
 use WebStream\IO\FileOutputStream;
-use WebStream\IO\ConsoleOutputStream;
 use WebStream\IO\Reader\FileReader;
-use WebStream\IO\Writer\OutputStreamWriter;
 use WebStream\IO\Test\Providers\OutputStreamWriterProvider;
+use WebStream\IO\Writer\OutputStreamWriter;
 
 /**
  * OutputStreamWriterTest
@@ -28,7 +29,7 @@ use WebStream\IO\Test\Providers\OutputStreamWriterProvider;
  * @since 2016/08/19
  * @version 0.7
  */
-class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
+class OutputStreamWriterTest extends TestCase
 {
     use OutputStreamWriterProvider;
 
@@ -37,6 +38,9 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * ファイルに書き込みができること
      * @test
      * @dataProvider writeProvider
+     * @param $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
     public function okFileWriteFromFilePath($filePath)
     {
@@ -49,7 +53,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $reader = new FileReader($filePath);
-        $this->assertEquals($reader->read(), "testtest");
+        $this->assertEquals("testtest", $reader->read());
     }
 
     /**
@@ -58,8 +62,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * ファイルオブジェクトを指定
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function okFileWriteFromFileObject($filePath)
+    public function okFileWriteFromFileObject(string $filePath)
     {
         @unlink($filePath);
         $stream = new FileOutputStream(new File($filePath));
@@ -70,7 +77,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $reader = new FileReader($filePath);
-        $this->assertEquals($reader->read(), "testtest");
+        $this->assertEquals("testtest", $reader->read());
     }
 
     /**
@@ -78,8 +85,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * Offset指定でファイルに書き込みができること
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function okFileWriteOffset($filePath)
+    public function okFileWriteOffset(string $filePath)
     {
         unlink($filePath);
         $stream = new FileOutputStream($filePath);
@@ -90,7 +100,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $reader = new FileReader($filePath);
-        $this->assertEquals($reader->read(), "123456");
+        $this->assertEquals("123456", $reader->read());
     }
 
     /**
@@ -98,8 +108,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * Length指定でファイルに書き込みができること
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function okFileWriteLength($filePath)
+    public function okFileWriteLength(string $filePath)
     {
         @unlink($filePath);
         $stream = new FileOutputStream($filePath);
@@ -110,7 +123,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $reader = new FileReader($filePath);
-        $this->assertEquals($reader->read(), "123123");
+        $this->assertEquals("123123", $reader->read());
     }
 
     /**
@@ -118,8 +131,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * Offset,Length指定でファイルに書き込みができること
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function okFileWriteOffsetLength($filePath)
+    public function okFileWriteOffsetLength(string $filePath)
     {
         @unlink($filePath);
         $stream = new FileOutputStream($filePath);
@@ -130,7 +146,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $reader = new FileReader($filePath);
-        $this->assertEquals($reader->read(), "123456");
+        $this->assertEquals("123456", $reader->read());
     }
 
     /**
@@ -138,8 +154,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * ファイルに追記できること
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function okFileWriteCharAppend($filePath)
+    public function okFileWriteCharAppend(string $filePath)
     {
         @unlink($filePath);
         $stream = new FileOutputStream($filePath);
@@ -155,7 +174,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
         $writer->close();
 
         $reader = new FileReader($filePath);
-        $this->assertEquals($reader->read(), "testtest");
+        $this->assertEquals("testtest", $reader->read());
     }
 
     /**
@@ -230,6 +249,7 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * 異常系
      * ファイルオブジェクト、ファイルパス以外を指定した場合、例外が発生すること
      * @test
+     * @throws \WebStream\Exception\Extend\IOException
      */
     public function ngInvalidFileType()
     {
@@ -244,8 +264,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * ファイルがロックされている状態でストリームオブジェクトを作成した場合、例外が発生すること
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function ngAlreadyFileLocked($filePath)
+    public function ngAlreadyFileLocked(string $filePath)
     {
         $this->expectException(\WebStream\Exception\Extend\IOException::class);
 
@@ -270,8 +293,11 @@ class OutputStreamWriterTest extends \PHPUnit\Framework\TestCase
      * flush済みの状態でflushすると例外が発生すること
      * @test
      * @dataProvider writeProvider
+     * @param string $filePath
+     * @throws \WebStream\Exception\Extend\IOException
+     * @throws \WebStream\Exception\Extend\InvalidArgumentException
      */
-    public function ngInvalidFlush($filePath)
+    public function ngInvalidFlush(string $filePath)
     {
         $this->expectException(\WebStream\Exception\Extend\IOException::class);
 

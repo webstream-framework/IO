@@ -22,12 +22,12 @@ abstract class InputStream
     /**
      * @var int 現在のポインタ位置
      */
-    protected $cursorPosition;
+    protected int $cursorPosition;
 
     /**
      * @var int markしたポインタ位置
      */
-    protected $markedPosition;
+    protected int $markedPosition;
 
     /**
      * constructor
@@ -58,10 +58,9 @@ abstract class InputStream
      * 引数に数値を指定した場合、指定数値バイトだけ読み込む
      * @param int length 読み込みバイト数
      * @return string 読み込みデータ
-     * @throws InvalidArgumentException
      * @throws IOException
      */
-    abstract public function read($length = null);
+    abstract public function read(int $length = 0);
 
     /**
      * 入力ストリームから行単位でデータを読み込む
@@ -98,7 +97,7 @@ abstract class InputStream
         }
 
         if ($this->stream === null) {
-            return null;
+            return;
         }
 
         $this->markedPosition = $this->cursorPosition;
@@ -125,7 +124,7 @@ abstract class InputStream
 
     /**
      * mark機能をサポートしているかどうか
-     * @return boolean マークをサポートしていればtrue
+     * @return bool マークをサポートしていればtrue
      */
     public function isMarkSupported()
     {

@@ -2,6 +2,8 @@
 
 namespace WebStream\IO\Reader;
 
+use WebStream\Exception\Extend\InvalidArgumentException;
+use WebStream\Exception\Extend\IOException;
 use WebStream\IO\FileInputStream;
 
 /**
@@ -15,12 +17,14 @@ class FileReader extends InputStreamReader
     /**
      * @var int バッファリングサイズ
      */
-    private $bufferSize;
+    private int $bufferSize;
 
     /**
      * constructor
      * @param mixed $file ファイルオブジェクトまたはファイルパス
      * @param int $bufferSize バッファリングサイズ
+     * @throws InvalidArgumentException
+     * @throws IOException
      */
     public function __construct($file, int $bufferSize = 8192)
     {
@@ -31,6 +35,7 @@ class FileReader extends InputStreamReader
     /**
      * ファイルを読み込む
      * @return string ファイル内容
+     * @throws IOException
      */
     public function read()
     {
